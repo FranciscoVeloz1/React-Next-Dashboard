@@ -6,6 +6,8 @@
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
       "@common/*": ["common/*"],
+      "@hooks/*": ["hooks/*"],
+      "@services/*": ["services/*"],
     }
   }
 }

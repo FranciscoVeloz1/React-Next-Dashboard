@@ -1,5 +1,8 @@
 import Layout from "@containers/Layout";
 
+//Import context
+import { ProviderAuth } from "@hooks/useAuth";
+
 //Importing bootstrap and fontawesome
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -11,9 +14,11 @@ import "@styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ProviderAuth>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ProviderAuth>
   );
 }
 
