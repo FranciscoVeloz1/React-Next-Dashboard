@@ -1,0 +1,26 @@
+@import "../Vars.scss";
+
+.InputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  color: $gray;
+  background-color: white;
+  font-size: $sm;
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  transform-origin: 0 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translateY(-18px);
+}
+
+.input::placeholder {
+  color: transparent;
+}

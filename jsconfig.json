@@ -5,6 +5,7 @@
       "@styles/*": ["styles/*"],
       "@components/*": ["components/*"],
       "@containers/*": ["containers/*"],
+      "@common/*": ["common/*"],
     }
   }
 }

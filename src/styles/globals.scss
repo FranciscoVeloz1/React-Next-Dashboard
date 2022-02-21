@@ -1,3 +1,5 @@
+@import "./Vars.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -55,4 +57,29 @@ table {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+//Text-sizes
+.text-sm {
+  font-size: $sm;
+}
+
+.text-md {
+  font-size: $md;
+}
+
+.text-lg {
+  font-size: $lg;
+}
+
+.title {
+  @extend .text-lg;
+  font-weight: bold;
+}
+
+//Image sign in
+.img-signin {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -7,7 +7,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 //Importing own styles
-import "@styles/globals.css";
+import "@styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
