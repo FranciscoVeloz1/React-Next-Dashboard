@@ -1,4 +1,4 @@
-import SignInForm from "@containers/Auth/SignInForm";
+import SignInForm from "@containers/auth/SignInForm";
 import { Container, Row, Col, FormControl, Button } from "react-bootstrap";
 
 export default function signin() {

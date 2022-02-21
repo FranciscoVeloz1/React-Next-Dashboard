@@ -1,9 +1,16 @@
 import Input from "@common/Input";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useRouter } from "next/router";
+import { useAuth } from "@hooks/useAuth";
+import { serviceAuth } from "@services/index.services";
 
 const SignInForm = () => {
+  const router = useRouter();
+  const { signIn } = useAuth();
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
   const [userData, setUserData] = useState({
@@ -30,21 +37,19 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const result = await auth.login(userData);
+    const result = await serviceAuth.signIn(userData);
+    if (result.error === "Usuario no encontrado") return setErrorEmail(true);
+    if (result.error === "Contraseña incorrecta") return setErrorPass(true);
+    if (result.status === "error")
+      return Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: "Something went wrong! " + result.error,
+        confirmButtonColor: "#ee2c2c",
+      });
 
-    // if (result.error === "Usuario no encontrado") return setErrorEmail(true);
-    // if (result.error === "Contraseña incorrecta") return setErrorPass(true);
-    // if (result.login === "failed")
-    //   return Swal.fire({
-    //     icon: "error",
-    //     title: "Oops",
-    //     text: "Something went wrong!",
-    //     confirmButtonColor: "#ee2c2c",
-    //   });
-
-    // login(result);
-
-    console.log(userData);
+    signIn(result);
+    router.push("/");
   };
 
   const emailOpt = {
@@ -69,10 +74,22 @@ const SignInForm = () => {
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <Input o={emailOpt} />
+        {errorEmail ? (
+          <p className="form-error mt-1">
+            <FontAwesomeIcon icon={faExclamationCircle} className="me-1" />
+            Email not found
+          </p>
+        ) : null}
       </div>
 
       <div className="mb-3">
         <Input o={passOpt} />
+        {errorPass ? (
+          <p className="form-error mt-1">
+            <FontAwesomeIcon icon={faExclamationCircle} className="me-1" />
+            Incorrect password
+          </p>
+        ) : null}
       </div>
 
       <div className="d-grid gap-2">
