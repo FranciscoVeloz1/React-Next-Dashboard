@@ -6,7 +6,7 @@ export default function signin() {
     "https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
   return (
-    <Container className="mt-md-5">
+    <Container className="mt-md-5 mb-5">
       <Row>
         <Col lg={8} md={10} className="mx-auto">
           <Row className="shadow-lg">
@@ -18,7 +18,7 @@ export default function signin() {
               <p className="title mb-4">Sign in</p>
               <SignInForm />
 
-              <div className="mt-4 mb-4">
+              <div className="mt-4 mb-4 text-center">
                 <a href="/forgot" className="btn-link text-sm">
                   Forgot password?
                 </a>

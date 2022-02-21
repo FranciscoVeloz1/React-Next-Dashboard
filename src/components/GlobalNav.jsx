@@ -8,7 +8,7 @@ const GlobalNav = () => {
       <Container>
         <Navbar.Brand href="/">
           <FontAwesomeIcon icon={faHome} className="me-2" />
-          React-Bootstrap
+          Template
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
