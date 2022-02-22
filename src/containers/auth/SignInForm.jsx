@@ -37,18 +37,18 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = await serviceAuth.signIn(userData);
-    if (result.error === "Usuario no encontrado") return setErrorEmail(true);
-    if (result.error === "Contraseña incorrecta") return setErrorPass(true);
-    if (result.status === "error")
-      return Swal.fire({
-        icon: "error",
-        title: "Oops",
-        text: "Something went wrong! " + result.error,
-        confirmButtonColor: "#ee2c2c",
-      });
+    // const result = await serviceAuth.signIn(userData);
+    // if (result.error === "Usuario no encontrado") return setErrorEmail(true);
+    // if (result.error === "Contraseña incorrecta") return setErrorPass(true);
+    // if (result.status === "error")
+    //   return Swal.fire({
+    //     icon: "error",
+    //     title: "Oops",
+    //     text: "Something went wrong! " + result.error,
+    //     confirmButtonColor: "#ee2c2c",
+    //   });
 
-    signIn(result);
+    signIn(userData);
     router.push("/");
   };
 

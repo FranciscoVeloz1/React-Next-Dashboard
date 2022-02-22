@@ -13,15 +13,21 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(Cookie.get("token") ? JSON.parse(Cookie.get("token")) : null);
 
   const signIn = async (data) => {
-    Cookie.set("token", data.token);
-    setUser(data.user);
+    Cookie.set("token", JSON.stringify(data));
+    setUser(data);
+  };
+
+  const signOut = () => {
+    setUser(null);
+    Cookie.remove("token");
   };
 
   return {
     user,
     signIn,
+    signOut,
   };
 }

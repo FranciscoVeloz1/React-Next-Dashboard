@@ -1,0 +1,27 @@
+@import "../Vars.scss";
+
+.main_container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main_content {
+  position: relative;
+  min-width: 0;
+  flex-grow: 1;
+  min-height: calc(100vh - 56px);
+  margin-left: -300px;
+  padding: 24px;
+}
+
+.main_content.active {
+  margin-left: -300px;
+}
+
+// Media queries
+@media (min-width: 992px) {
+  .main_content {
+    margin-left: 0;
+    transition: margin 0.15s ease-in-out;
+  }
+}

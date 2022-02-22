@@ -1,0 +1,74 @@
+@import "../Vars.scss";
+
+.Sidebar {
+  flex-basis: 300px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease-in-out;
+  z-index: 100;
+  background-color: $very-light-gray;
+  transform: translateX(0);
+  box-sizing: border-box;
+}
+
+.Sidebar.active {
+  transform: translateX(-300px);
+}
+
+.sidebar_header {
+  padding: 24px;
+  margin-bottom: 38px;
+  background-color: $light-gray;
+}
+
+.sidebar_header img {
+  height: 15px;
+}
+
+.sidebar_header a {
+  font-size: $lg;
+  color: black;
+  font-weight: bold;
+}
+
+.sidebar_content {
+  padding: 24px;
+}
+
+.sidebar_content p {
+  font-size: $md;
+  font-weight: bold;
+  width: 68px;
+  padding-bottom: 12px;
+  border-bottom: 4px solid $blue;
+  margin-bottom: 38px;
+}
+
+.sidebar_content i {
+  margin-right: 6px;
+}
+
+.sidebar_content ul li {
+  margin-bottom: 34px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $gray;
+}
+
+.sidebar_content ul li a {
+  font-size: $sm;
+  color: black;
+  transition: 250ms all;
+}
+
+.sidebar_content ul li a:hover {
+  color: $blue;
+}
+
+@media (max-width: 992px) {
+  .Sidebar {
+    transform: translateX(-300px);
+  }
+
+  .Sidebar.active {
+    transform: translateX(0);
+  }
+}

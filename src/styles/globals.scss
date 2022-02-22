@@ -34,6 +34,7 @@ a {
 ol,
 ul {
   list-style: none;
+  padding: 0;
 }
 
 blockquote,
@@ -75,6 +76,11 @@ a {
 .title {
   @extend .text-lg;
   font-weight: bold;
+}
+
+//Borders
+.border-radius {
+  border-radius: 6px;
 }
 
 //Image sign in
