@@ -1,7 +1,9 @@
-import React from 'react'
+import AdminLayout from "@containers/AdminLayout";
 
-export default function index() {
-  return (
-    <div>index</div>
-  )
-}
+const index = () => {
+  return <div>index</div>;
+};
+
+index.Layout = AdminLayout;
+
+export default index;

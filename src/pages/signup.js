@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SignUpForm from "@containers/auth/SignUpForm";
 import { Container, Row, Col, FormControl, Button } from "react-bootstrap";
 
@@ -22,9 +23,9 @@ export default function signup() {
 
               <div className="mt-4 text-center text-sm">
                 Do you have an account?
-                <a href="/signin" className="ms-1 btn-link">
-                  Sign in
-                </a>
+                <Link href="/signin">
+                  <a className="ms-1 btn-link">Sign in</a>
+                </Link>
               </div>
             </Col>
           </Row>

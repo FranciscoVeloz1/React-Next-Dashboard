@@ -1,4 +1,4 @@
-import Layout from "@containers/Layout";
+import DefaultLayout from "@containers/DefaultLayout";
 
 //Import context
 import { ProviderAuth } from "@hooks/useAuth";
@@ -13,6 +13,8 @@ config.autoAddCss = false;
 import "@styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
+  const Layout = Component.Layout || DefaultLayout;
+
   return (
     <ProviderAuth>
       <Layout>

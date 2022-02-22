@@ -57,6 +57,7 @@ const SignInForm = () => {
     text: "Email",
     id: "email",
     styles: "bg-light",
+    labelStyle: "bg-light",
     onChange: handleEmail,
     value: userData.email,
   };
@@ -66,6 +67,7 @@ const SignInForm = () => {
     text: "Password",
     id: "password",
     styles: "bg-light",
+    labelStyle: "bg-light",
     onChange: handlePass,
     value: userData.password,
   };

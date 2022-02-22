@@ -25,3 +25,9 @@
     transition: margin 0.15s ease-in-out;
   }
 }
+
+@media (max-width: 640px) {
+  .main_content {
+    padding: 12px;
+  }
+}
