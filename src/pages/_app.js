@@ -1,4 +1,5 @@
 import DefaultLayout from "@containers/DefaultLayout";
+import SSRProvider from "react-bootstrap/SSRProvider";
 
 //Import context
 import { ProviderAuth } from "@hooks/useAuth";
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ProviderAuth>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <SSRProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SSRProvider>
     </ProviderAuth>
   );
 }

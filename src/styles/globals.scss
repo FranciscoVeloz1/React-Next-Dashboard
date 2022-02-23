@@ -25,6 +25,7 @@ section {
 body {
   line-height: 1;
   font-family: "Open Sans", sans-serif;
+  background-color: $light-gray;
 }
 
 a {
@@ -73,9 +74,33 @@ a {
   font-size: $lg;
 }
 
+.txt-primary {
+  color: $blue;
+}
+
+.txt-secondary {
+  color: $gray;
+}
+
+.txt-bold {
+  font-weight: bold;
+}
+
 .title {
   @extend .text-lg;
   font-weight: bold;
+}
+
+//Button primary
+.button-primary {
+  background-color: $blue;
+  border: $blue;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: $dark-blue;
+  color: white;
 }
 
 //Borders
@@ -96,4 +121,56 @@ a {
   margin-top: -20px;
   margin-left: 4px;
   color: $red;
+}
+
+//Bootstrap
+.shadow-lg {
+  background-color: white;
+}
+
+.dropdown-menu {
+  animation: growIn .5s;
+}
+
+//Key frames
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    margin-top: -10px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    margin-right: -20px;
+    opacity: 0;
+  }
+  to {
+    margin-right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes growIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
