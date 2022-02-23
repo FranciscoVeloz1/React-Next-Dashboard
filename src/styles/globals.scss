@@ -61,6 +61,11 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 //Text-sizes
 .text-sm {
   font-size: $sm;
@@ -78,6 +83,11 @@ a {
   color: $blue;
 }
 
+.txt-primary:hover {
+  color: $blue;
+}
+
+
 .txt-secondary {
   color: $gray;
 }
@@ -94,12 +104,22 @@ a {
 //Button primary
 .button-primary {
   background-color: $blue;
-  border: $blue;
   color: white;
 }
 
 .button-primary:hover {
   background-color: $dark-blue;
+  color: white;
+}
+
+//Button info
+.button-info {
+  background-color: $dark-blue;
+  color: white;
+}
+
+.button-info:hover {
+  background-color: $very-dark-blue;
   color: white;
 }
 
@@ -128,8 +148,12 @@ a {
   background-color: white;
 }
 
-.dropdown-menu {
-  animation: growIn .5s;
+.dropdown-growIn {
+  animation: growIn 0.5s;
+}
+
+.dropdown-fadeIn {
+  animation: fadeIn 0.5s;
 }
 
 //Key frames

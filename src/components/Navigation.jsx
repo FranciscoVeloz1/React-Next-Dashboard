@@ -28,7 +28,7 @@ const Navigation = ({ setToggle, toggle }) => {
               Francisco
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className="dropdown-growIn">
               <Dropdown.Item href="/profile" className="mt-2">
                 <FontAwesomeIcon icon={faUser} className="me-2 txt-secondary" />
                 Profile
@@ -48,7 +48,7 @@ const Navigation = ({ setToggle, toggle }) => {
               Francisco
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className="dropdown-growIn">
               <Dropdown.Item href="/profile" className="mt-2">
                 <FontAwesomeIcon icon={faUser} className="me-2 txt-secondary" />
                 Profile
