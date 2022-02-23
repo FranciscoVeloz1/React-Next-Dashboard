@@ -87,7 +87,6 @@ p {
   color: $blue;
 }
 
-
 .txt-secondary {
   color: $gray;
 }
@@ -148,12 +147,21 @@ p {
   background-color: white;
 }
 
-.dropdown-growIn {
+//Animations
+.ani-growIn {
   animation: growIn 0.5s;
 }
 
-.dropdown-fadeIn {
+.ani-fadeIn {
   animation: fadeIn 0.5s;
+}
+
+.dropdown-growIn {
+  @extend .ani-growIn;
+}
+
+.dropdown-fadeIn {
+  @extend .ani-fadeIn;
 }
 
 //Key frames

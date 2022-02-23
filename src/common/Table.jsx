@@ -29,7 +29,7 @@ const Table = ({ o }) => {
   }, [o.data, search]);
 
   return (
-    <div className="container-fluid bg-white border-radius p-4 shadow-lg">
+    <div className="container-fluid bg-white border-radius p-4 shadow-lg ani-fadeIn">
       <p className="title">Table title</p>
       <div className="row mt-2">
         {/* Search */}
