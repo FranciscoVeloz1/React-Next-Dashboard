@@ -2,17 +2,12 @@ import Link from "next/link";
 import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
-import { useAuth } from "@hooks/useAuth";
+import { signOut } from "next-auth/react";
 
 const Navigation = ({ setToggle, toggle }) => {
-  const { user, signOut } = useAuth();
-  const router = useRouter();
-
   //Sign out
   const handleSignOut = () => {
     signOut();
-    router.push("/");
   };
 
   return (

@@ -5,6 +5,7 @@ const Input = ({ o }) => {
     <div className={styles.InputContainer}>
       <input
         type={o.type}
+        name={o.name}
         className={`${styles.input} form-control ${o.styles}`}
         id={o.id}
         value={o.value}

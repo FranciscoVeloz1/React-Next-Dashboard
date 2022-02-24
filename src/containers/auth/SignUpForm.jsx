@@ -5,12 +5,10 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import { useRouter } from "next/router";
-import { useAuth } from "@hooks/useAuth";
 import { serviceAuth } from "@services/index.services";
 
 const SignUpForm = () => {
   const router = useRouter();
-  const { signIn } = useAuth();
   const [errorUser, setErrorUser] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassLength, setErrorPassLength] = useState(false);
@@ -61,7 +59,6 @@ const SignUpForm = () => {
         confirmButtonColor: "#ee2c2c",
       });
 
-    signIn(result);
     router.push("/");
   };
 

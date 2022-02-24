@@ -2,9 +2,6 @@ import DefaultLayout from "@containers/DefaultLayout";
 import SSRProvider from "react-bootstrap/SSRProvider";
 import { SessionProvider } from "next-auth/react";
 
-//Import context
-import { ProviderAuth } from "@hooks/useAuth";
-
 //Importing bootstrap and fontawesome
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -19,13 +16,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   return (
     <SessionProvider session={session}>
-      <ProviderAuth>
-        <SSRProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </SSRProvider>
-      </ProviderAuth>
+      <SSRProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SSRProvider>
     </SessionProvider>
   );
 }

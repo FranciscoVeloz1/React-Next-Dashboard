@@ -2,15 +2,11 @@ import Input from "@common/Input";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useRouter } from "next/router";
-import { useAuth } from "@hooks/useAuth";
-import { serviceAuth } from "@services/index.services";
+import { signIn } from "next-auth/react";
 
-const SignInForm = () => {
-  const router = useRouter();
-  const { signIn } = useAuth();
+const SignInForm = ({ csrfToken }) => {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
   const [userData, setUserData] = useState({
@@ -37,23 +33,15 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const result = await serviceAuth.signIn(userData);
-    // if (result.error === "Usuario no encontrado") return setErrorEmail(true);
-    // if (result.error === "Contraseña incorrecta") return setErrorPass(true);
-    // if (result.status === "error")
-    //   return Swal.fire({
-    //     icon: "error",
-    //     title: "Oops",
-    //     text: "Something went wrong! " + result.error,
-    //     confirmButtonColor: "#ee2c2c",
-    //   });
-
-    signIn(userData);
-    router.push("/");
+    const result = signIn("credentials", {
+      email: userData.email,
+      password: userData.password,
+    });
   };
 
   const emailOpt = {
-    type: "text",
+    type: "email",
+    name: "email",
     text: "Email",
     id: "email",
     styles: "bg-light",
@@ -64,6 +52,7 @@ const SignInForm = () => {
 
   const passOpt = {
     type: "password",
+    name: "password",
     text: "Password",
     id: "password",
     styles: "bg-light",
@@ -73,7 +62,9 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form method="post" action="/api/auth/signin/credentials/">
+      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
       <div className="mb-3">
         <Input o={emailOpt} />
         {errorEmail ? (

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAuth } from "@hooks/useAuth";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +41,6 @@ const SigninSignout = () => {
 };
 
 const GlobalNav = () => {
-  const { user } = useAuth();
   const router = useRouter();
 
   //Sign out

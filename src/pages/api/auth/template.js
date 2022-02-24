@@ -5,6 +5,7 @@ const credentialsAuth = (req, res) => {
       return res.status(405).end();
     }
 
+    console.log(req.body);
     //Validamos credenciales
     if (req.body.password === "12345678") {
       const templateUser = {

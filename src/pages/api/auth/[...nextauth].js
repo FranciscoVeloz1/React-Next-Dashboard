@@ -14,9 +14,11 @@ const options = {
       name: "template",
       credentials: {
         password: { label: "Password", type: "password" },
+        email: { label: "Email", type: "email" },
       },
       authorize: async (credentials) => {
         try {
+          console.log(credentials)
           const res = await fetch(`${process.env.API_DEV}/auth/template`, {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -41,6 +43,9 @@ const options = {
     }),
   ],
   secret: process.env.SECRET,
+  pages: {
+    signIn: "/auth/signin",
+  },
 };
 
 export default NextAuth(options);
