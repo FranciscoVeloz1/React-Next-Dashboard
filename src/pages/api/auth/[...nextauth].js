@@ -4,7 +4,11 @@ import GitHubProvider from "next-auth/providers/github";
 import { auth } from "@services/api";
 
 const options = {
-  theme: "light",
+  theme: {
+    colorScheme: "light",
+    brandColor: "#89cfe0",
+    logo: "https://cdn-icons-png.flaticon.com/512/2784/2784389.png",
+  },
   debug: true,
   session: {},
   jwt: {},
@@ -13,12 +17,12 @@ const options = {
       id: "app-login",
       name: "template",
       credentials: {
-        password: { label: "Password", type: "password" },
-        email: { label: "Email", type: "email" },
+        email: { label: "Email", type: "email", placeholder: "Email" },
+        password: { label: "Password", type: "password", placeholder: "Password" },
       },
       authorize: async (credentials) => {
         try {
-          console.log(credentials)
+          console.log(credentials);
           const res = await fetch(`${process.env.API_DEV}/auth/template`, {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -43,9 +47,6 @@ const options = {
     }),
   ],
   secret: process.env.SECRET,
-  pages: {
-    signIn: "/auth/signin",
-  },
 };
 
 export default NextAuth(options);

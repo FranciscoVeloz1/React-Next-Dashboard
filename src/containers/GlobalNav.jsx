@@ -4,6 +4,7 @@ import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 //Sign in and sign out
 const SigninSignout = () => {
