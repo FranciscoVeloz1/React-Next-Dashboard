@@ -1,5 +1,23 @@
 import AdminLayout from "@containers/AdminLayout";
 import { Container, Row, Col } from "react-bootstrap";
+import { getSession } from "next-auth/react";
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (session === null) {
+    return {
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+};
 
 const index = () => {
   return (

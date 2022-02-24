@@ -7,7 +7,7 @@ export const getToken = () => {
 };
 
 export const auth = {
-  signin: `${API}/auth/signin`,
+  signin: `${API}/auth/template`,
   signup: `${API}/auth/signup`,
 };
 

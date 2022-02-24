@@ -1,4 +1,4 @@
-import GlobalNav from "@components/GlobalNav";
+import GlobalNav from "@containers/GlobalNav";
 import { ToastContainer } from "react-bootstrap";
 
 const DefaultLayout = ({ children }) => {

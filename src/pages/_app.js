@@ -1,5 +1,6 @@
 import DefaultLayout from "@containers/DefaultLayout";
 import SSRProvider from "react-bootstrap/SSRProvider";
+import { SessionProvider } from "next-auth/react";
 
 //Import context
 import { ProviderAuth } from "@hooks/useAuth";
@@ -13,17 +14,19 @@ config.autoAddCss = false;
 //Importing own styles
 import "@styles/globals.scss";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const Layout = Component.Layout || DefaultLayout;
 
   return (
-    <ProviderAuth>
-      <SSRProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </SSRProvider>
-    </ProviderAuth>
+    <SessionProvider session={session}>
+      <ProviderAuth>
+        <SSRProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SSRProvider>
+      </ProviderAuth>
+    </SessionProvider>
   );
 }
 

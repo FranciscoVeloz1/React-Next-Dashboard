@@ -21,7 +21,7 @@ const Sidebar = ({ toggle }) => {
         <ul>
           <p className={styles.sidebar_subtitle}>Menu</p>
           <li>
-            <Link href="/template">
+            <Link href="/admin/template">
               <a>
                 <FontAwesomeIcon icon={faFileAlt} className={`me-2 ${styles.sidebar_icon}`} />
                 Template
