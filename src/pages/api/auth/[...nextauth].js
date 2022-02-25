@@ -4,10 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import { auth } from "@services/api";
 
 const options = {
-  theme: {
-    colorScheme: "auto",
-    brandColor: "#89cfe0",
-  },
+  theme: "light",
   debug: true,
   session: {},
   jwt: {},
@@ -21,7 +18,6 @@ const options = {
       },
       authorize: async (credentials) => {
         try {
-          console.log(credentials);
           const res = await fetch(`${process.env.API_DEV}/auth/template`, {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -46,6 +42,23 @@ const options = {
     }),
   ],
   secret: process.env.SECRET,
+  pages: {
+    signIn: "/auth/signin",
+  },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log(profile);
+      const isAllowedToSignIn = true;
+      if (isAllowedToSignIn) {
+        return true;
+      } else {
+        // Return false to display a default error message
+        return false;
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
+    },
+  },
 };
 
 export default NextAuth(options);

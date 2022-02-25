@@ -33,10 +33,32 @@ const SignInForm = ({ csrfToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // try {
+    //   const res = await fetch(`http://localhost:3000/api/auth/template`, {
+    //     method: "POST",
+    //     body: JSON.stringify(userData),
+    //     headers: { "Content-Type": "application/json" },
+    //   });
+    //   const user = await res.json();
+
+    //   if (user) {
+    //     console.log(user)
+    //     return user;
+    //   } else {
+    //     return null;
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   return null;
+    // }
+
     const result = signIn("credentials", {
+      redirect: false,
       email: userData.email,
       password: userData.password,
     });
+
+    console.log(result)
   };
 
   const emailOpt = {
@@ -62,7 +84,8 @@ const SignInForm = ({ csrfToken }) => {
   };
 
   return (
-    <form method="post" action="/api/auth/signin/credentials/">
+    // <form method="post" action="/api/auth/callback/credentials">
+    <form onSubmit={handleSubmit}>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
       <div className="mb-3">

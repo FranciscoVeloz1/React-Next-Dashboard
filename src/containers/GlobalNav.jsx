@@ -32,7 +32,7 @@ const SigninSignout = () => {
   return (
     <>
       <button onClick={() => signIn()} className="nav-link bg-dark text-start">
-        Sign In
+        Sign in
       </button>
       <Link href="/signup">
         <a className="nav-link bg-dark">Sign up</a>
