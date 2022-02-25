@@ -5,9 +5,8 @@ import { auth } from "@services/api";
 
 const options = {
   theme: {
-    colorScheme: "light",
+    colorScheme: "auto",
     brandColor: "#89cfe0",
-    logo: "https://cdn-icons-png.flaticon.com/512/2784/2784389.png",
   },
   debug: true,
   session: {},

@@ -1,47 +1,58 @@
 import Table from "@common/Table";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import useFetch from "@hooks/useFetch";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { serviceExample } from "@services/index.services";
+import { Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
 
 const List = () => {
-  const [data, setData] = useState([]);
+  const { data, refresh } = useFetch(serviceExample.list);
 
-  const getData = async () => {
-    try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-      setData(await response.json());
-    } catch (error) {
-      setData(null);
-    }
+  //Delete the tasks
+  const handleDelete = async (id, item) => {
+    Swal.fire({
+      text: `Do you want to delete the task ${item}?`,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: "#d9534f",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const result = await serviceExample.deleteData(id);
+        refresh();
+        result.status === "success"
+          ? toast.error("Task deleted successfully", {
+              position: "bottom-right",
+              theme: "colored",
+            })
+          : Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Commodity could not be deleted",
+            });
+      }
+    });
   };
 
   const tableOptions = {
     data,
-    title: "Template",
-    headers: ["User", "ID", "Title", "Body"],
+    title: "Task table",
+    headers: ["ID", "Task", "Description"],
     addLink: "/admin/template/add",
     editLink: "/admin/template/edit",
-    delete: (id, item) => console.log(id, item),
+    delete: (id, item) => handleDelete(id, item),
   };
-
-  useEffect(() => {
-    getData();
-
-    return () => setData([]);
-  }, []);
 
   return (
     <div className="mt-5">
       {data !== null && data !== undefined ? (
-        data.length > 0 ? (
-          <Table o={tableOptions} />
-        ) : (
-          <center>
-            <Spinner animation="border" variant="secondary" />
-          </center>
-        )
+        <Table o={tableOptions} />
       ) : (
+        // <center>
+        //   <Spinner animation="border" variant="secondary" />
+        // </center>
         <center className="title">
           <FontAwesomeIcon icon={faSync} className="me-2" />
           Error, reload the page please

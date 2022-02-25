@@ -1,6 +1,7 @@
-import List from "@containers/template/List";
+import Form from "@containers/template/Form";
 import AdminLayout from "@containers/AdminLayout";
 import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
@@ -19,10 +20,17 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-const index = () => {
-  return <List />;
+const edit = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  return (
+    <>
+      <Form />
+    </>
+  );
 };
 
-index.Layout = AdminLayout;
+edit.Layout = AdminLayout;
 
-export default index;
+export default edit;

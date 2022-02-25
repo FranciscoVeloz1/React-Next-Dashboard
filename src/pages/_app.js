@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 
 //Importing bootstrap and fontawesome
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css"
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;

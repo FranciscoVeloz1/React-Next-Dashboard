@@ -1,4 +1,4 @@
-import List from "@containers/template/List";
+import Form from "@containers/template/Form";
 import AdminLayout from "@containers/AdminLayout";
 import { getSession } from "next-auth/react";
 
@@ -19,10 +19,14 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-const index = () => {
-  return <List />;
+const add = () => {
+  return (
+    <>
+      <Form />
+    </>
+  );
 };
 
-index.Layout = AdminLayout;
+add.Layout = AdminLayout;
 
-export default index;
+export default add;

@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
 import Navigation from "@components/Navigation";
-import { ToastContainer } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
 import styles from "@styles/containers/Layout.module.scss";
 

@@ -30,7 +30,7 @@ const Table = ({ o }) => {
 
   return (
     <div className="container-fluid bg-white border-radius p-4 shadow-lg ani-fadeIn">
-      <p className="title">Table title</p>
+      <p className="title">{o.title}</p>
       <div className="row mt-2">
         {/* Search */}
         <div className="col-lg-6 col-md-8 col-12 d-flex py-1">
@@ -58,7 +58,7 @@ const Table = ({ o }) => {
             <FontAwesomeIcon icon={faFileExcel} />
           </button>
 
-          <Link href="/">
+          <Link href={o.addLink}>
             <a className="btn button-primary">
               <FontAwesomeIcon icon={faAdd} />
             </a>

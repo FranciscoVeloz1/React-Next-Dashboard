@@ -5,7 +5,8 @@ export const list = async () => {
     const response = await fetch(tasks.list);
     return await response.json();
   } catch (error) {
-    return "Failed " + error;
+    console.log(error);
+    return [];
   }
 };
 
