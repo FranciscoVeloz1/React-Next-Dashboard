@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const credentialsAuth = (req, res) => {
   try {
     //Si el metodo no es post, regresamos error

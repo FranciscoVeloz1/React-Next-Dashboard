@@ -10,14 +10,11 @@ const options = {
   jwt: {},
   providers: [
     CredentialsProvider({
-      id: "app-login",
+      id: "templateLogin",
       name: "template",
-      credentials: {
-        email: { label: "Email", type: "email", placeholder: "Email" },
-        password: { label: "Password", type: "password", placeholder: "Password" },
-      },
       authorize: async (credentials) => {
         try {
+          console.log(credentials);
           const res = await fetch(`${process.env.API_DEV}/auth/template`, {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -28,6 +25,7 @@ const options = {
           if (user) {
             return user;
           } else {
+            console.log("xdddd");
             return null;
           }
         } catch (error) {
