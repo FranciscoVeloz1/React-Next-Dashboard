@@ -4,7 +4,6 @@ import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect } from "react";
 
 //Sign in and sign out
 const SigninSignout = () => {
@@ -17,7 +16,9 @@ const SigninSignout = () => {
   if (session) {
     return (
       <>
-        <p className="nav-link">{session.user?.name}</p>
+        <p className="nav-link" onClick={() => console.log(session)}>
+          {session.user?.name}
+        </p>
         <Link href="/profile">
           <a className="nav-link">Profile</a>
         </Link>
@@ -31,10 +32,10 @@ const SigninSignout = () => {
 
   return (
     <>
-      <button onClick={() => signIn()} className="nav-link bg-dark text-start">
-        Sign in
-      </button>
-      <Link href="/signup">
+      <Link href="/auth/signin">
+        <a className="nav-link bg-dark">Sign in</a>
+      </Link>
+      <Link href="/auth/signup">
         <a className="nav-link bg-dark">Sign up</a>
       </Link>
     </>

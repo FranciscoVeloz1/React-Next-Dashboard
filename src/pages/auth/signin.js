@@ -1,10 +1,10 @@
 import Link from "next/link";
 import SignInForm from "@containers/auth/SignInForm";
 import { Container, Row, Col, FormControl, Button } from "react-bootstrap";
-import { getProviders, signIn, getSession, getCsrfToken } from "next-auth/react";
+import { getProviders, signIn, getSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function signin({ providers, csrfToken }) {
+export default function signin({ providers }) {
   const { github } = providers;
 
   const img =
@@ -16,14 +16,14 @@ export default function signin({ providers, csrfToken }) {
     <Container className="mt-md-5 mb-5">
       <Row>
         <Col lg={8} md={10} className="mx-auto">
-          <Row className="shadow-lg">
+          <Row className="shadow-lg no-shadow">
             <Col lg={6} md={6} className="p-0 d-md-block d-none">
               <img src={img} alt="login" className="img-signin" />
             </Col>
 
             <Col lg={6} md={6} className="mx-auto py-5 px-4">
               <p className="title mb-4">Sign in</p>
-              <SignInForm csrfToken={csrfToken} />
+              <SignInForm />
 
               <div className="mt-4 mb-4 text-center">
                 <a href="/forgot" className="btn-link text-sm">
@@ -34,7 +34,7 @@ export default function signin({ providers, csrfToken }) {
               <hr />
 
               <div className="text-center py-1">
-                <button className="btn btn-outline-secondary" onClick={() => signIn(github.id)}>
+                <button className="btn button-outline-dark" onClick={() => signIn(github.id)}>
                   <img src={gitLogo} className="brand-icon me-1 py-auto" />
                   Sign in with {github.name}
                 </button>
@@ -42,7 +42,7 @@ export default function signin({ providers, csrfToken }) {
 
               <div className="mt-4 text-center text-sm">
                 Don't have account?
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   <a className="ms-1 btn-link">Sign up</a>
                 </Link>
               </div>
@@ -68,6 +68,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { session, providers, csrfToken: await getCsrfToken(context) },
+    props: { session, providers },
   };
 }

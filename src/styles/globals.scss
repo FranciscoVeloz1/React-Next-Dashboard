@@ -122,6 +122,17 @@ p {
   color: white;
 }
 
+//Button outline dark
+.button-outline-dark {
+  border-color: black;
+  color: black;
+}
+
+.button-outline-dark:hover {
+  background-color: $light-gray;
+}
+
+
 //Borders
 .border-radius {
   border-radius: 6px;
@@ -209,5 +220,12 @@ p {
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .no-shadow {
+    box-shadow: none !important;
+    background-color: transparent;
   }
 }

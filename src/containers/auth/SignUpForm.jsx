@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { serviceAuth } from "@services/index.services";
+import { signIn } from "next-auth/react";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const SignUpForm = () => {
   const [errorPassLength, setErrorPassLength] = useState(false);
   const [errorSamePass, setErrorSamePass] = useState(false);
   const [userData, setUserData] = useState({
-    user: "",
+    name: "",
     fullname: "",
     email: "",
     password: "",
@@ -25,7 +26,17 @@ const SignUpForm = () => {
   //Save data when input change
   const handleChange = (name, value) => setUserData({ ...userData, [name]: value });
 
-  //Handle passwords
+  //Handle inputs
+  const handleUser = (e) => {
+    handleChange("name", e.target.value);
+    setErrorUser(false);
+  };
+
+  const handleEmail = (e) => {
+    handleChange("email", e.target.value);
+    setErrorEmail(false);
+  };
+
   const handlePassword = (e) => {
     handleChange("password", e.target.value);
     setErrorPassLength(false);
@@ -52,14 +63,28 @@ const SignUpForm = () => {
 
     const result = await serviceAuth.signUp(userData);
     if (result.status === "error")
-      return Swal.fire({
-        icon: "error",
-        title: "Oops",
-        text: "Something went wrong! " + result.error,
-        confirmButtonColor: "#ee2c2c",
-      });
+      switch (result.message) {
+        case "email already exist":
+          setErrorEmail(true);
+          return;
 
-    router.push("/");
+        case "user already exist":
+          setErrorUser(true);
+          return;
+
+        default:
+          return Swal.fire({
+            icon: "error",
+            title: "Oops",
+            text: "Something went wrong! - " + result.message,
+            confirmButtonColor: "#ee2c2c",
+          });
+      }
+
+    signIn("templateLogin", {
+      email: userData.email,
+      callbackUrl: "/",
+    });
   };
 
   const inputOpt = [
@@ -69,7 +94,7 @@ const SignUpForm = () => {
       id: "user",
       styles: "bg-light",
       labelStyle: "bg-light",
-      onChange: (e) => handleChange("user", e.target.value),
+      onChange: handleUser,
       value: userData.user,
     },
     {
@@ -87,7 +112,7 @@ const SignUpForm = () => {
       id: "email",
       styles: "bg-light",
       labelStyle: "bg-light",
-      onChange: (e) => handleChange("email", e.target.value),
+      onChange: handleEmail,
       value: userData.email,
     },
     {
@@ -116,6 +141,12 @@ const SignUpForm = () => {
         <Col lg={6} sm={12}>
           <div className="mb-3">
             <Input o={inputOpt[0]} />
+            {errorUser ? (
+              <p className="form-error mt-1">
+                <FontAwesomeIcon icon={faExclamationCircle} className="me-1" />
+                User already exist
+              </p>
+            ) : null}
           </div>
         </Col>
 
@@ -128,6 +159,12 @@ const SignUpForm = () => {
 
       <div className="mb-3">
         <Input o={inputOpt[2]} />
+        {errorEmail ? (
+          <p className="form-error mt-1">
+            <FontAwesomeIcon icon={faExclamationCircle} className="me-1" />
+            Email already exist
+          </p>
+        ) : null}
       </div>
 
       <div className="mb-3">

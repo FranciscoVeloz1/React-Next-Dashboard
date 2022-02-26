@@ -1,12 +1,15 @@
 import Input from "@common/Input";
 import Swal from "sweetalert2";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { signIn } from "next-auth/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-const SignInForm = ({ csrfToken }) => {
+//Importing services
+import { serviceAuth } from "@services/index.services";
+
+const SignInForm = () => {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
   const [userData, setUserData] = useState({
@@ -33,17 +36,28 @@ const SignInForm = ({ csrfToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const result = signIn("templateLogin", {
-        email: userData.email,
-        password: userData.password,
-        callbackUrl: "/",
-      });
+    const result = await serviceAuth.signIn(userData);
 
-      console.log(result);
-    } catch (error) {
-      alert(error);
+    if (result.status === "error") {
+      switch (result.message) {
+        case "user not found":
+          setErrorEmail(true);
+          return;
+
+        case "Invalid password":
+          setErrorPass(true);
+          return;
+
+        default:
+          Swal.fire(result.message);
+          return;
+      }
     }
+
+    signIn("templateLogin", {
+      email: userData.email,
+      callbackUrl: "/",
+    });
   };
 
   const emailOpt = {
@@ -69,10 +83,7 @@ const SignInForm = ({ csrfToken }) => {
   };
 
   return (
-    <form method="post" action="/api/auth/callback/templateLogin">
-    {/* // <form onSubmit={handleSubmit}> */}
-      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
+    <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <Input o={emailOpt} />
         {errorEmail ? (
