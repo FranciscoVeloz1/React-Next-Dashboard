@@ -1,9 +1,13 @@
 import AdminLayout from "@containers/AdminLayout";
+import useFetch from "@hooks/useFetch";
 import { Container, Row, Col } from "react-bootstrap";
 import { getSession } from "next-auth/react";
+import { serviceSession } from "@services/index.services";
 
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
+  const data = await serviceSession.getCurrent(session.user);
+  console.log(data);
 
   if (session === null) {
     return {

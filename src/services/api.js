@@ -11,6 +11,10 @@ export const auth = {
   signup: `${API}/auth/signup`,
 };
 
+export const session = {
+  current: `${API}/auth/current`,
+};
+
 export const tasks = {
   list: `${API}/tasks`,
   get: (id) => `${API}/tasks/${id}`,

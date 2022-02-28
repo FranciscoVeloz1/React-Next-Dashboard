@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (service) => {
+const useFetch = (service, params = "") => {
   //Data state
   const [data, setData] = useState([]);
 
   //Get the data from the service
   const getData = async () => {
-    const res = await service();
+    const res = await service(params);
     setData(res);
   };
 

@@ -18,6 +18,7 @@ create table users(
     fullname varchar(50),
     email varchar(50),
     password varchar(250),
+    image varchar(250),
     fk_rol int,
     foreign key(fk_rol) references rol(id)
 );

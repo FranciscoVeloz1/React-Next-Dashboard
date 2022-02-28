@@ -16,7 +16,7 @@ const SigninSignout = () => {
   if (session) {
     return (
       <>
-        <p className="nav-link" onClick={() => console.log(session)}>
+        <p className="nav-link">
           {session.user?.name}
         </p>
         <Link href="/profile">

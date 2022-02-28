@@ -20,6 +20,7 @@ const SignUpForm = () => {
     email: "",
     password: "",
     confirm: "",
+    image: "",
     fk_rol: 1,
   });
 
@@ -53,15 +54,17 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (userData.password.length < 8) {
+    const newUser = { ...userData, image: `https://ui-avatars.com/api/?name=${userData.name}` };
+
+    if (newUser.password.length < 8) {
       return setErrorPassLength(true);
     }
 
-    if (userData.password !== userData.confirm) {
+    if (newUser.password !== userData.confirm) {
       return setErrorSamePass(true);
     }
 
-    const result = await serviceAuth.signUp(userData);
+    const result = await serviceAuth.signUp(newUser);
     if (result.status === "error")
       switch (result.message) {
         case "email already exist":
@@ -82,7 +85,7 @@ const SignUpForm = () => {
       }
 
     signIn("templateLogin", {
-      email: userData.email,
+      email: newUser.email,
       callbackUrl: "/",
     });
   };

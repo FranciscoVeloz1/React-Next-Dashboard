@@ -95,6 +95,10 @@ p {
   font-weight: bold;
 }
 
+.txt-normal {
+  font-weight: 500;
+}
+
 .title {
   @extend .text-lg;
   font-weight: bold;
@@ -131,7 +135,6 @@ p {
 .button-outline-dark:hover {
   background-color: $light-gray;
 }
-
 
 //Borders
 .border-radius {
